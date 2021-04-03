@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   back.c                                             :+:      :+:    :+:   */
+/*   back_cp.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yenam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 01:44:11 by yenam             #+#    #+#             */
-/*   Updated: 2021/04/04 08:36:44 by yenam            ###   ########.fr       */
+/*   Updated: 2021/04/04 08:50:33 by yenam            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,33 +78,20 @@ int		fill_in(int x, int y)
 		y = 0;
 	}
 	if (x > 3)
-	{
 		return (1);
-	}
 	fillit = 0;
-	i = 1;
-	while (i < 5)
+	i = 0;
+	while (++i < 5)
 	{
 		g_in[x][y] = i + '0';
-		if (y == 3)
-		{
-			if (is_duplicate(x, y) && check(x, y))
-			{
-				fillit = fill_in(x, y + 1);
-				if (fillit)
-					return (1);
-			}
-		}
+		if ((is_duplicate(x, y) && check(x, y)) &&
+				(fill_in(x, y + 1)) && (y == 3))
+			return (1);
 		else
 		{
-			if (is_duplicate(x, y))
-			{
-				fillit = fill_in(x, y + 1);
-				if (fillit)
-					return (1);
-			}
+			if (is_duplicate(x, y) && (fill_in(x, y + 1)))
+				return (1);
 		}
-		i++;
 	}
 	return (0);
 }
