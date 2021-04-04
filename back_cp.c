@@ -6,7 +6,7 @@
 /*   By: yenam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 01:44:11 by yenam             #+#    #+#             */
-/*   Updated: 2021/04/04 15:41:00 by jihuhwan         ###   ########.fr       */
+/*   Updated: 2021/04/04 17:16:32 by jihuhwan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ bool	is_check_col(char **str)
 	{
 		cnt = '1';
 		base = g_in[idx][row];
-		while (idx < 4)
+		while (idx < 3)
 		{
 			if (base < g_in[++idx][row])
 			{
@@ -112,7 +112,7 @@ bool	is_check_col2(char **str)
 	{
 		cnt = '1';
 		base = g_in[idx][row];
-		while (idx > -1)
+		while (idx > 0)
 		{
 			if (base < g_in[--idx][row])
 			{
@@ -141,7 +141,7 @@ bool	is_check_row(char **str)
 	{
 		cnt = '1';
 		base = g_in[col][idx];
-		while (idx > -1)
+		while (idx > 0)
 		{
 			if (base < g_in[col][--idx])
 			{
