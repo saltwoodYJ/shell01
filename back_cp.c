@@ -6,7 +6,7 @@
 /*   By: yenam <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/04 01:44:11 by yenam             #+#    #+#             */
-/*   Updated: 2021/04/04 13:57:06 by hyojlee          ###   ########.fr       */
+/*   Updated: 2021/04/04 15:41:00 by jihuhwan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,9 +91,68 @@ bool	is_check_col(char **str)
 				base = g_in[idx][row];
 			}
 		}
+		idx = 0;
 		if (cnt != str[0][row])	
 			return (false);
 		row++;
+	}
+	return (true);
+}
+
+bool	is_check_col2(char **str)
+{
+	int 	idx;
+	char	cnt;
+	char	base;
+	int		row;
+
+	idx = 3;
+	row = 0;
+	while (row < 4)
+	{
+		cnt = '1';
+		base = g_in[idx][row];
+		while (idx > -1)
+		{
+			if (base < g_in[--idx][row])
+			{
+				cnt++;
+				base = g_in[idx][row];
+			}
+		}
+		idx = 3;
+		if(cnt != str[1][row])
+			return (false);
+		row++;
+	}
+	return (true);
+}
+
+bool	is_check_row(char **str)
+{
+	int		idx;
+	char	cnt;
+	char	base;
+	int		col;
+
+	idx = 3;
+	col = 0;
+	while (col < 4)
+	{
+		cnt = '1';
+		base = g_in[col][idx];
+		while (idx > -1)
+		{
+			if (base < g_in[col][--idx])
+			{
+				cnt++;
+				base = g_in[col][idx];
+			}
+		}
+		idx = 3;
+		if(cnt != str[3][col])
+			return (false);
+		col++;
 	}
 	return (true);
 }
@@ -138,7 +197,7 @@ int		fill_in(int x, int y, char **str)
 	}
 	if (x > 3)
 	{
-		if (is_check_col(str))
+		if (is_check_col(str) && is_check_col2(str) && is_check_row(str))
 			return (1);
 		return (0);
 	}
